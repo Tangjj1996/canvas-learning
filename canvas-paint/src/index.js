@@ -6,12 +6,22 @@ const ctx = canvas.getContext('2d');
 canvas.width = document.body.clientWidth;
 canvas.height = document.body.clientHeight - 4;
 
-const skyStyle = ctx.createRadialGradient(canvas.width / 2,
-  canvas.height, 0, canvas.width / 2, canvas.height, canvas.height);
+const skyStyle = ctx.createRadialGradient(canvas.width / 2, canvas.height, 0, canvas.width / 2, canvas.height, canvas.height);
 skyStyle.addColorStop(0.0, '#035');
 skyStyle.addColorStop(1.0, 'black');
 ctx.fillStyle = skyStyle;
 ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+shapes.drawLand(ctx, canvas.width, canvas.height);
+ctx.font = "bold 50px Arial"
+
+ctx.fillStyle = "#058"
+ctx.fillText("青青草原", 40, 1200)
+
+ctx.shadowColor = "#fff"
+ctx.shadowOffsetX = 1
+ctx.shadowOffsetY = 1
+ctx.shadowBlur = 3
 
 for (let i = 0; i < 200; i++) {
   const r = Math.random() + 0.5;
@@ -22,16 +32,4 @@ for (let i = 0; i < 200; i++) {
   shapes.drawStar(ctx, r, x, y, a);
 }
 
-// let moonStyle = ctx.createRadialGradient( 4 / 5 * canvas.width, 200, 0,
-// 4 / 5 * canvas.width, 200, 200 )
-// moonStyle.addColorStop(0.0, "#035")
-// moonStyle.addColorStop(1.0, '#fff')
-
-// ctx.beginPath()
-// ctx.arc(4 / 5 * canvas.width + 20, 200 + 20, 120, 0, 2 * Math.PI)
-
-// ctx.fillStyle = moonStyle
-// ctx.fill()
-
 shapes.drawMoon(ctx, 2, (4 / 5) * canvas.width, 200, 100, 30);
-shapes.drawLand(ctx, canvas.width, canvas.height);
